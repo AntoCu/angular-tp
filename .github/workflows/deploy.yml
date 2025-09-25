@@ -26,7 +26,7 @@ jobs:
         working-directory: Angular-Hello-World
 
       - name: Archive production files
-        run: tar -czf dist.tar.gz -C Angular-Hello-World/dist/hello-world-app .
+        run: tar -czf dist.tar.gz -C Angular-Hello-World/dist/Angular-Hello-World .
       
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v4
