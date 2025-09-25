@@ -22,13 +22,8 @@ jobs:
         working-directory: Angular-Hello-World
 
       - name: Build Angular project
-        run: npm run build --prod
+        run: npm run build
         working-directory: Angular-Hello-World
-
-      - name: Upload artifact for deployment
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: Angular-Hello-World/dist/Angular-Hello-World/*  # dossier directement
 
   deploy:
     runs-on: ubuntu-latest
