@@ -22,7 +22,7 @@ jobs:
         working-directory: Angular-Hello-World
 
       - name: Build Angular project
-        run: npm run build -- --prod
+        run: npm run build --prod
         working-directory: Angular-Hello-World
 
       - name: Archive production files
