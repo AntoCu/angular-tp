@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./Angular-Hello-World
+        working-directory: Angular-Hello-World
     steps:
       # 1 Récupérer le code
       - name: Checkout code
@@ -25,12 +25,12 @@ jobs:
       # 3 Installer les dépendances
       - name: Install dependencies
         run: npm ci
-        working-directory: ./Angular-Hello-World
+        working-directory: Angular-Hello-World
 
       # 4 Build Angular
       - name: Build Angular project
         run: npm run build --prod 
-        working-directory: ./Angular-Hello-World
+        working-directory: Angular-Hello-World
 
       # 5 Upload le dossier dist complet pour GitHub Pages
       - name: Upload artifact
