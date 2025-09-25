@@ -33,7 +33,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: Angular-Hello-World/dist/Angular-Hello-World/browser/index.html  # <--- le nom exact du dossier généré par ng build
+          path: Angular-Hello-World/dist/Angular-Hello-World/ 
 
   deploy:
     runs-on: ubuntu-latest
