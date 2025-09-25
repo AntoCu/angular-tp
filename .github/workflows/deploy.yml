@@ -1,4 +1,4 @@
-name: Deploy Angular
+name: Deploy
 
 on:
   push:
@@ -10,45 +10,41 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: Angular-Hello-World
+        working-directory: ./angular-hello-world
     steps:
-      # 1 Récupérer le code
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2 Installer Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3 Installer les dépendances
       - name: Install dependencies
         run: npm ci
-        working-directory: Angular-Hello-World
 
-      # 4 Build Angular
-      - name: Build Angular project
-        run: npm run build --prod 
-        working-directory: Angular-Hello-World
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
-      # 5 Upload le dossier dist complet pour GitHub Pages
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+      - name: Build Angular app for GitHub Pages
+        run: npm run build --prod
+        working-directory : angular-hello-world
+
+      - name: Upload artifact for Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: Angular-Hello-World/dist/Angular-Hello-World/browser
+          path: angular-hello-world/dist/angular-hello-world/browser
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
-    steps:
-      - name: Deploy 
-        id: deployment
-        uses: actions/deploy-pages@v4
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
