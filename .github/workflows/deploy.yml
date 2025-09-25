@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Angular
 
 on:
   push:
@@ -9,21 +9,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      # 1. Récupérer le code
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. Installer Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      # 3. Installer les dépendances
       - name: Install dependencies
         run: npm ci
         working-directory: Angular-Hello-World
 
+      # 4. Build Angular pour production
       - name: Build Angular project
-        run: npm run build
+        run: npm run build --prod
         working-directory: Angular-Hello-World
+
+      # 5. Upload le dossier dist complet pour GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: Angular-Hello-World/dist/Angular-Hello-World/browser/index.html  # <--- le nom exact du dossier généré par ng build
 
   deploy:
     runs-on: ubuntu-latest
