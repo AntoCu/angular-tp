@@ -1,8 +1,10 @@
 name: Lint
 
-on: 
+on:
   pull_request:
-    [ main, locale]
+    branches:
+      - main
+      - locale
 
 jobs: 
   lint:
