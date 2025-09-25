@@ -31,7 +31,7 @@ jobs:
 
       # 5. Upload le dossier dist complet pour GitHub Pages
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: Angular-Hello-World/dist/Angular-Hello-World
 
@@ -43,7 +43,7 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy 
         id: deployment
         uses: actions/deploy-pages@v4
     environment:
