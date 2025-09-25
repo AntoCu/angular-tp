@@ -22,16 +22,13 @@ jobs:
         working-directory: Angular-Hello-World
 
       - name: Build Angular project
-        run: npm run build --prod
+        run: npm run build -- --prod
         working-directory: Angular-Hello-World
 
-      - name: Archive production files
-        run: tar -czf dist.tar.gz -C Angular-Hello-World/dist/Angular-Hello-World .
-      
       - name: Upload artifact for deployment
         uses: actions/upload-pages-artifact@v4
         with:
-          path: dist.tar.gz
+          path: Angular-Hello-World/dist/Angular-Hello-World  # dossier directement
 
   deploy:
     runs-on: ubuntu-latest
